@@ -1,0 +1,17 @@
+{
+  "name": "ntest",
+  "version": "1.0.0",
+  "description": "test node.js application",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.14.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
