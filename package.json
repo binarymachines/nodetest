@@ -5,7 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.0",
-    "lodash": "^4.14.2"
+    "express-handlebars": "^3.0.0",
+    "lodash": "^4.14.2",
+    "request": "^2.74.0",
+    "vows": "^0.8.1"
   },
   "devDependencies": {},
   "scripts": {

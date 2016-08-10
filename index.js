@@ -1,4 +1,5 @@
 // index.js
+const snapclient = require('./snapclient.js')
 
 const path = require('path')
 const express = require('express')
@@ -24,6 +25,7 @@ app.get('/', (request, response) => {
   })
 })
 
+    /*
 function talkToSnap(){
 
     request({
@@ -34,14 +36,15 @@ function talkToSnap(){
 	if(error){
 	    console.log(error);
 	}
-	else{
+	else{	    
 	    console.log(response.statusCode, body);
+	    return body
 	}
 
     });
 }
+    */
 
-
-talkToSnap();
+snapclient.talkToSnap();
 
 //app.listen(3000)
