@@ -10,7 +10,8 @@ vows.describe('simpletest') // Create the suite, describing 'subject'
 		'we get four': function(topic) {
 		    assert.equal(topic, 4); 
 		}
-	    },
+	    }}).run();
+/*
 	    'when we talk to the Snap microservice': {
 		topic: function() { snapclient.talkToSnap() },
 		'we get a hello world string': function( ) {
@@ -19,3 +20,4 @@ vows.describe('simpletest') // Create the suite, describing 'subject'
 		}
 	    }	
     }).run();        
+*/

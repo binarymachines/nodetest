@@ -4,16 +4,19 @@
   "description": "test node.js application",
   "main": "index.js",
   "dependencies": {
+    "chai": "^3.5.0",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "lodash": "^4.14.2",
     "request": "^2.74.0",
     "vows": "^0.8.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.0.2"
+  },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "author": "",
   "license": "ISC"
