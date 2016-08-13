@@ -1,50 +1,47 @@
-// index.js
+// index.js:
+// test harness for updated dev practices at Kip
+//
+//
 const snapclient = require('./snapclient.js')
 
-const path = require('path')
-const express = require('express')
-const exphbs = require('express-handlebars')
-const app = express()
+var winston = require('winston');
+var yaml = require('js-yaml');
+var fs = require('fs');
 
-var request = require('request')
+// get the command line arguments
+var argv = require('minimist')(process.argv.slice(2));
 
-
-app.engine('.hbs', exphbs({
-    defaultLayout: 'main',
-    extname: '.hbs',
-    layoutsDir: path.join(__dirname, 'views/layouts')
-}))
-
-app.set('view engine', '.hbs')
-app.set('views', path.join(__dirname, 'views'))
-
-
-app.get('/', (request, response) => {  
-  response.render('home', {
-    name: 'John'
-  })
-})
-
-    /*
-function talkToSnap(){
-
-    request({
-	uri: 'http://localhost:5000/user/1',
-	method: 'GET',
-	body: ''
-    }, function(error, response, body){
-	if(error){
-	    console.log(error);
-	}
-	else{	    
-	    console.log(response.statusCode, body);
-	    return body
-	}
-
-    });
+// process command-line args
+var initFilename = argv['config'];
+if(initFilename === null || initFilename === undefined){
+    console.log('--config parameter not found. Please invoke this script using --config=<config_filename>.');
+    process.exit(-1);
 }
-    */
 
-snapclient.talkToSnap();
+var yamlDoc;
+try {
+    yamlDoc = yaml.safeLoad(fs.readFileSync(initFilename, 'utf8'));
+}
+catch(err){
+    console.log(err);
+}
 
-//app.listen(3000)
+// initialize logging
+//
+const loggingTransports = yamlDoc['globals']['log_transports'];
+var logger = new(winston.Logger)({
+    transports: loggingTransports.map(
+	function(currentVal){
+	    return new (eval(currentVal['type']))(currentVal);
+	}
+    )
+});
+
+logger.debug('Hello World YET AGAIN from Kip logging!');
+logger.debug('Debug mode = ' + yamlDoc['globals']['debug']);
+logger.debug('Service will listen on port ' + yamlDoc['globals']['port'])
+
+//snapclient.talkToSnap();
+
+
+

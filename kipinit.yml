@@ -1,0 +1,28 @@
+# 
+# sample YAML init file for kip node.js scripts
+#
+#
+
+
+globals:
+        port:                   5050
+        debug:                  True
+        log_transports:
+                  - type:         winston.transports.File
+                    filename:     kip.log
+                    level:        debug
+                    json:         false
+                  
+                  - type:         winston.transports.Console
+                    level:        info
+                    json:         false
+
+
+
+#-----  experimental section, under development --
+segments:
+        snapclient:
+                port:   5050
+#-------------------------------------------------
+
+
