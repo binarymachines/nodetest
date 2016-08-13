@@ -41,6 +41,7 @@ var logger = new(winston.Logger)({
 logger.debug('Hello World YET AGAIN from Kip logging!');
 logger.debug('Debug mode = ' + yamlDoc['globals']['debug']);
 logger.debug('Service will listen on port ' + yamlDoc['globals']['port'])
+logger.info('Here we go console.');
 
 //snapclient.talkToSnap();
 
