@@ -45,5 +45,20 @@ logger.info('Here we go console.');
 
 //snapclient.talkToSnap();
 
+var kipsvc = require('./kip_services');
+const kiputils = require('./kiputils');
 
+const initParams = { 'host': 'localhost',
+		     'database': 'test',
+		     'username': 'user',
+		     'password': 'password',
+		     'port': 27000 };
+
+
+const loadedParams = kiputils.ServiceObjectLoader(yamlDoc).loadServiceObjectParams('MongoDBClient');
+
+logger.info(loadedParams);
+
+var mongoClient = kipsvc.MongoDBClient(loadedParams);
+logger.info(mongoClient.getURI());
 
